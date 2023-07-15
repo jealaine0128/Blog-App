@@ -1,0 +1,19 @@
+<div class="bg-slate-100 flex justify-center">
+<div class="w-1/2 bg-white flex flex-col shadow-xl my-10 p-7 rounded-lg gap-6">
+<h1 class="text-4xl font-medium"><%= @article.title %></h1>
+<div class="flex flex-col gap-3">
+<%= content_tag :div, @article.author.present? ? @article.author : "Elon Musk", class: "text-blue-600 font-medium" %>
+<div>
+Published: <%= @article.created_at.strftime("%c")%>
+</div>
+</div>
+<article class=" break-words"><%= @article.body %></article>
+</div>
+</div>
+<div class="flex flex-col gap-5 bg-white p-6 fixed right-20 top-20">
+  <%= link_to "Edit", edit_article_path(@article), class: "bg-blue-500 cursor-pointer hover:bg-blue-600 text-white px-5 rounded-lg py-2 text-lg" %>
+<%= form_with(model: @article, method: :delete, url: article_path(@article)) do |form| %>
+  <%= form.submit "Delete", class: "bg-red-500 hover:bg-red-600 cursor-pointer text-white text-lg px-5 py-2 rounded-lg w-full" %>
+<% end %><a href="/articles" class="bg-green-500 text-white px-5 py-2 rounded-lg text-lg">Go Back</a>
+  </div>
+
